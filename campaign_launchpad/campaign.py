@@ -57,23 +57,24 @@ class CampaignBuilder:
         return self
 
     def build(self) -> Campaign:
+        #fails pytest if any of the required fields are missing or invalid
         if not self._name:
             raise ValueError("Campaign name is required")
         if not self._channel:
             raise ValueError("Campaign channel is required")
         if self._daily_budget is None or self._daily_budget <= 0:
-            raise ValueError("Budget must be a positive number")
+            raise ValueError("Budget must be positive")
         if self._end_date is not None and self._start_date > self._end_date:
             raise ValueError("Start date must be before or equal to end date")
         if not self._creatives:
             raise ValueError("At least one creative is required")
         return Campaign(
-            name=self._name,
-            channel=self._channel,
-            daily_budget=self._daily_budget,
-            start_date=self._start_date,
-            end_date=self._end_date,
-            target_audience=self._audience,
-            creatives=list(self._creatives),
-            tracking=self._tracking,
+            name = self._name,
+            channel = self._channel,
+            daily_budget = self._daily_budget,
+            start_date = self._start_date,
+            end_date = self._end_date,
+            target_audience = self._audience,
+            creatives = list(self._creatives),
+            tracking = self._tracking,
         )

@@ -11,7 +11,6 @@ class ChannelClient(ABC):
 
     @abstractmethod
     def create_campaign(self, campaign: Campaign) -> str:
-        # TODO: Create a campaign on this channel and return an external id.
         pass
 
     @abstractmethod
@@ -20,8 +19,8 @@ class ChannelClient(ABC):
 
 
 class GoogleAdsClient(ChannelClient):
-    def __init__(self):
-        super().__init__("Google Ads")
+    def __init__(self, name: str = "Google Ads"):
+        super().__init__(name)
 
     def create_campaign(self, campaign: Campaign) -> str:
         GlobalBudget().allocate(campaign.daily_budget)
@@ -32,8 +31,8 @@ class GoogleAdsClient(ChannelClient):
 
 
 class FacebookAdsClient(ChannelClient):
-    def __init__(self):
-        super().__init__("Facebook Ads")
+    def __init__(self, name: str = "Facebook Ads"):
+        super().__init__(name)
 
     def create_campaign(self, campaign: Campaign) -> str:
         GlobalBudget().allocate(campaign.daily_budget)

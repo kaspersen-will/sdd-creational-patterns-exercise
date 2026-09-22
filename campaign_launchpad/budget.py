@@ -14,9 +14,9 @@ class GlobalBudget:
 
     def allocate(self, amount: float) -> None:
         if amount <= 0:
-            raise ValueError("Allocation amount must be positive")
+            raise ValueError("Budget Allocation amount must be positive")
         if amount > self._balance:
-            raise ValueError(f"Insufficient budget: requested {amount}, available {self._balance}")
+            raise ValueError(f"Insufficient budget. Available funds: {self._balance}")
         self._balance -= amount
 
     def remaining(self) -> float:
